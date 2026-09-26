@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nuttet Landbrug</title>
+<meta name="description" content="Nuttet Landbrug — satire om landbrugets billedsprog. Fordi grisen altid er sødest på reklamen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbf6ee; --surface:#ffffff; --ink:#23201c; --muted:#6b645a;
+    --pink:#f2a7b8; --pink-deep:#c9546f; --grass:#5d8a3a; --grass-soft:#e4efd8;
+    --line:#e8dfd0; --grey:#8e8e8e; --mp:#5a78ff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1a1814; --surface:#24211c; --ink:#f3ede3; --muted:#b3aa9c;
+      --pink:#e58ea3; --pink-deep:#f0a0b4; --grass:#8fbf66; --grass-soft:#2a3321;
+      --line:#3a352d; --grey:#9a9a9a; --mp:#8ea2ff;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1a1814; --surface:#24211c; --ink:#f3ede3; --muted:#b3aa9c;
+    --pink:#e58ea3; --pink-deep:#f0a0b4; --grass:#8fbf66; --grass-soft:#2a3321;
+    --line:#3a352d; --grey:#9a9a9a; --mp:#8ea2ff;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Inter,system-ui,sans-serif}
+  a{color:var(--pink-deep)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.1;margin:0 0 .5em}
+  h1{font-size:clamp(2.4rem,7vw,4.6rem);font-weight:800;letter-spacing:-.02em}
+  h2{font-size:clamp(1.7rem,4vw,2.5rem)}
+  h3{font-size:1.25rem}
+  .satire-bar{background:var(--ink);color:var(--bg);font-size:.85rem;text-align:center;padding:8px 16px}
+
+  header.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:16px;flex-wrap:wrap}
+  .logo{font-family:Fraunces,serif;font-weight:800;font-size:1.35rem;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px}
+  .logo svg{width:36px;height:36px}
+  nav a{margin-left:18px;text-decoration:none;color:var(--muted);font-weight:500}
+  nav a:hover{color:var(--ink)}
+  @media (max-width:600px){nav a{margin:0 14px 0 0}}
+
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:40px 0 70px}
+  @media (max-width:820px){.hero{grid-template-columns:1fr;padding-top:10px}}
+  .hero p.lead{font-size:1.2rem;color:var(--muted);max-width:34em}
+  .btn{display:inline-block;padding:14px 24px;border-radius:999px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:1rem}
+  .btn-primary{background:var(--pink-deep);color:#fff}
+  .btn-ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+  .btn + .btn{margin-left:10px}
+  .scene{background:var(--grass-soft);border-radius:28px;padding:20px;position:relative;overflow:hidden}
+  .scene svg{width:100%;height:auto;display:block}
+  .scene .caption{font-size:.8rem;color:var(--muted);text-align:right;margin-top:6px}
+
+  section{padding:70px 0;border-top:1px solid var(--line)}
+  .kicker{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:700;color:var(--grass)}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media (max-width:820px){.grid3{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px}
+  .card .emoji{font-size:2rem}
+  .card small{display:block;color:var(--muted);margin-top:10px;font-size:.85rem;border-top:1px dashed var(--line);padding-top:10px}
+
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid var(--line)}
+  @media (max-width:700px){.compare{grid-template-columns:1fr}}
+  .compare div{padding:28px}
+  .compare .ad{background:var(--grass-soft)}
+  .compare .real{background:var(--surface);filter:grayscale(1)}
+  .compare ul{margin:0;padding-left:1.1em}
+
+  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media (max-width:820px){.quotes{grid-template-columns:1fr}}
+  blockquote{margin:0;background:var(--surface);border-left:6px solid var(--pink);border-radius:14px;padding:22px 26px;font-family:Fraunces,serif;font-size:1.25rem}
+  blockquote cite{display:block;font-family:Inter,sans-serif;font-style:normal;font-size:.9rem;color:var(--muted);margin-top:12px}
+
+  .pay{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  @media (max-width:820px){.pay{grid-template-columns:1fr}}
+  .pay-box{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px}
+  .amounts{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 20px}
+  .amounts button{flex:1 1 90px;padding:14px;border-radius:14px;border:2px solid var(--line);background:transparent;color:var(--ink);font:700 1rem Inter,sans-serif;cursor:pointer}
+  .amounts button[aria-pressed="true"]{border-color:var(--mp);background:color-mix(in srgb,var(--mp) 12%,transparent)}
+  .amounts button span{display:block;font-weight:400;font-size:.75rem;color:var(--muted)}
+  .mp-number{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--mp);color:#fff;border-radius:16px;padding:18px 20px;flex-wrap:wrap}
+  .mp-number .num{font:800 1.8rem/1 Fraunces,serif;letter-spacing:.04em}
+  .mp-number .label{font-size:.8rem;opacity:.85}
+  .mp-number button{background:#fff;color:#1f2d7a;border:0;border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer}
+  ol.steps{padding-left:1.2em;color:var(--muted)}
+  ol.steps strong{color:var(--ink)}
+  .receipt{margin-top:16px;font-size:.9rem;color:var(--muted)}
+  .fine{font-size:.85rem;color:var(--muted)}
+
+  footer{border-top:1px solid var(--line);padding:40px 0 60px;font-size:.9rem;color:var(--muted)}
+  footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .stamp{font-family:ui-monospace,Menlo,monospace;font-size:.8rem}
+</style>
+</head>
+<body>
+
+<div class="satire-bar">🐷 Satire. Nuttet Landbrug er ikke tilknyttet Landbrug &amp; Fødevarer, BCG, McKinsey eller nogen anden organisation.</div>
+
+<div class="wrap">
+  <header class="nav">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="21" r="16" fill="var(--pink)"/><ellipse cx="20" cy="25" rx="7" ry="5" fill="var(--pink-deep)" opacity=".55"/><circle cx="17.5" cy="25" r="1.4" fill="var(--ink)"/><circle cx="22.5" cy="25" r="1.4" fill="var(--ink)"/><circle cx="14" cy="17" r="1.6" fill="var(--ink)"/><circle cx="26" cy="17" r="1.6" fill="var(--ink)"/><path d="M7 11 L12 5 L14 13Z M33 11 L28 5 L26 13Z" fill="var(--pink)"/></svg>
+      nuttetlandbrug.dk
+    </a>
+    <nav>
+      <a href="#vaerdier">Værdier</a>
+      <a href="#fortaelling">Fortællingen</a>
+      <a href="#stoet">Støt os</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="kicker">Et strategisk narrativ-initiativ</p>
+      <h1>Landbrug så nuttet, at du glemmer at spørge.</h1>
+      <p class="lead">Vi er to konsulenter med én mission: at sikre, at dansk landbrug forbliver <em>præcis</em> så idyllisk, som det ser ud på mælkekartonen. Alt andet er støj i datasættet.</p>
+      <p><a class="btn btn-primary" href="#stoet">Støt nuttetheden</a><a class="btn btn-ghost" href="#fortaelling">Se fortællingen</a></p>
+    </div>
+    <div class="scene">
+      <svg viewBox="0 0 400 300" role="img" aria-label="Tegning af en glad gris på en grøn mark under en sol">
+        <circle cx="330" cy="60" r="34" fill="#f7c948"/>
+        <path d="M0 210 Q100 170 200 205 T400 195 V300 H0Z" fill="var(--grass)"/>
+        <path d="M0 240 Q120 215 240 240 T400 235 V300 H0Z" fill="var(--grass)" opacity=".7"/>
+        <g transform="translate(120 150)">
+          <ellipse cx="80" cy="70" rx="80" ry="52" fill="var(--pink)"/>
+          <circle cx="150" cy="52" r="42" fill="var(--pink)"/>
+          <path d="M128 18 L136 -6 L150 16Z M160 16 L176 -4 L178 22Z" fill="var(--pink-deep)" opacity=".6"/>
+          <ellipse cx="176" cy="62" rx="16" ry="12" fill="var(--pink-deep)" opacity=".5"/>
+          <circle cx="171" cy="62" r="3" fill="#23201c"/><circle cx="181" cy="62" r="3" fill="#23201c"/>
+          <circle cx="146" cy="42" r="4" fill="#23201c"/>
+          <path d="M150 80 Q160 88 170 80" stroke="#23201c" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <rect x="20" y="108" width="14" height="28" rx="6" fill="var(--pink-deep)" opacity=".7"/>
+          <rect x="120" y="108" width="14" height="28" rx="6" fill="var(--pink-deep)" opacity=".7"/>
+          <path d="M2 60 q-16 -8 -8 -20 q8 -8 12 4" stroke="var(--pink-deep)" stroke-width="4" fill="none"/>
+        </g>
+        <g fill="#fff"><circle cx="40" cy="190" r="4"/><circle cx="70" cy="200" r="3"/><circle cx="360" cy="210" r="4"/></g>
+      </svg>
+      <p class="caption">Illustration. Grisen er en kunstnerisk fortolkning.*</p>
+    </div>
+  </div>
+</div>
+
+<section id="vaerdier">
+  <div class="wrap">
+    <p class="kicker">Vores værdier</p>
+    <h2>Tre søjler. Nul spørgsmål.</h2>
+    <div class="grid3">
+      <div class="card">
+        <div class="emoji">🌾</div>
+        <h3>Nuttethed først</h3>
+        <p>Hvert billede af dansk landbrug skal indeholde mindst én grisehale, ét halmstrå og én solnedgang. Det er ikke til forhandling.</p>
+        <small>KPI: Nuttethed pr. kvadratmeter reklameflade.</small>
+      </div>
+      <div class="card">
+        <div class="emoji">📊</div>
+        <h3>Datadreven idyl</h3>
+        <p>Vi har analyseret 4.000 PowerPoint-slides og konkluderet, at alle problemer kan løses med et bedre ikon og en grønnere farvekode.</p>
+        <small>Metode: 2x2-matrix. Begge akser hedder "nuttet".</small>
+      </div>
+      <div class="card">
+        <div class="emoji">🔇</div>
+        <h3>Stille synergi</h3>
+        <p>Den mest bæredygtige ressource er stilhed. Derfor genanvender vi den samme pressemeddelelse, hver gang nogen spørger om noget.</p>
+        <small>Cirkulær kommunikation, 100 % genbrug.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fortaelling">
+  <div class="wrap">
+    <p class="kicker">Fortællingen</p>
+    <h2>Reklamen og regnearket</h2>
+    <p class="fine" style="margin-bottom:22px">Vores rådgivning i ét slide. Venstre kolonne er til forbrugeren. Højre kolonne er til bestyrelsen.</p>
+    <div class="compare">
+      <div class="ad">
+        <h3>🌈 Til mælkekartonen</h3>
+        <ul>
+          <li>Grisen hedder Gunnar og elsker at rulle i mudder</li>
+          <li>Koen ser ud over fjorden ved solnedgang</li>
+          <li>Bonden vinker med stråhat</li>
+          <li>"Fra jord til bord – med kærlighed"</li>
+        </ul>
+      </div>
+      <div class="real">
+        <h3>📁 Til bilag 14c</h3>
+        <ul>
+          <li>Enhed 4471-B, optimeret gennemløbstid</li>
+          <li>Indendørs produktionsfacilitet, klimastyret</li>
+          <li>Lobbybudget: fortroligt</li>
+          <li>"Vi henviser til tidligere udmeldinger"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Hvem er vi</p>
+    <h2>To konsulenter. Én moral (valgfri).</h2>
+    <div class="quotes">
+      <blockquote>"Jeg har aldrig mødt en gris, men jeg har lavet en fantastisk persona af en."
+        <cite>— Den ene af os, ex-topkonsulenthus (det mest onde af dem)</cite></blockquote>
+      <blockquote>"Hvis faktaene ikke passer i fortællingen, er det faktaene, der skal omstruktureres."
+        <cite>— Den anden af os, ex-konkurrerende topkonsulenthus</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="stoet">
+  <div class="wrap pay">
+    <div>
+      <p class="kicker">Støt os</p>
+      <h2>Betal for nuttethed med MobilePay</h2>
+      <p>Nuttethed er ikke gratis. Hver krone går direkte til flere solnedgange, blødere halm og endnu flere slides. Vælg dit abonnement på idyl:</p>
+      <ol class="steps">
+        <li>Vælg et beløb herunder.</li>
+        <li>Åbn <strong>MobilePay</strong> på din telefon.</li>
+        <li>Send beløbet til <strong>25 25 93 50</strong>.</li>
+        <li>Skriv <strong>"Nuttet"</strong> i beskeden.</li>
+      </ol>
+      <p class="fine">Beløbet går til den private ejer af nuttetlandbrug.dk. Det er et frivilligt bidrag til en satireside — ikke velgørenhed og ikke medlemskab af nogen organisation. Du får ingen varer eller ydelser for det.</p>
+    </div>
+    <div class="pay-box">
+      <h3>Vælg din nuttethedspakke</h3>
+      <div class="amounts" role="group" aria-label="Beløb">
+        <button type="button" data-amount="25" aria-pressed="false">25 kr<span>Et halmstrå</span></button>
+        <button type="button" data-amount="50" aria-pressed="true">50 kr<span>En solnedgang</span></button>
+        <button type="button" data-amount="100" aria-pressed="false">100 kr<span>En hel grisehale</span></button>
+        <button type="button" data-amount="250" aria-pressed="false">250 kr<span>Bestyrelsespakken</span></button>
+      </div>
+      <div class="mp-number">
+        <div>
+          <div class="label">MobilePay til</div>
+          <div class="num">25 25 93 50</div>
+        </div>
+        <button type="button" id="copy">Kopiér nummer</button>
+      </div>
+      <p class="receipt" id="receipt" aria-live="polite">Send <strong>50 kr</strong> med beskeden "Nuttet" — en solnedgang.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <strong>nuttetlandbrug.dk</strong><br>
+        Satire. Alle personer, citater og grise på denne side er opdigtede.<br>
+        Ikke tilknyttet Landbrug &amp; Fødevarer, Boston Consulting Group eller McKinsey &amp; Company.<br>
+        *Grisen er fiktiv. Ingen grise blev optimeret under produktionen af denne hjemmeside.
+      </div>
+      <div class="stamp">Kladde · opdateret 26.09.2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const labels = {25:"et halmstrå",50:"en solnedgang",100:"en hel grisehale",250:"bestyrelsespakken"};
+  const receipt = document.getElementById('receipt');
+  document.querySelectorAll('.amounts button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.amounts button').forEach(x => x.setAttribute('aria-pressed','false'));
+      b.setAttribute('aria-pressed','true');
+      const a = b.dataset.amount;
+      receipt.innerHTML = `Send <strong>${a} kr</strong> med beskeden "Nuttet" — ${labels[a]}.`;
+    });
+  });
+  document.getElementById('copy').addEventListener('click', async e => {
+    try { await navigator.clipboard.writeText('25259350'); e.target.textContent = 'Kopieret ✓'; }
+    catch { e.target.textContent = '25259350'; }
+    setTimeout(() => e.target.textContent = 'Kopiér nummer', 2000);
+  });
+</script>
+</body>
+</html>
